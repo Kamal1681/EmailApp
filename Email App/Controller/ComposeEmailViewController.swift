@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ComposeEmailViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
@@ -64,6 +65,27 @@ class ComposeEmailViewController: UIViewController, UITextViewDelegate, UITextFi
     }
 
     @IBAction func sendButtonPressed(_ sender: Any) {
+        let time = NSDate().timeIntervalSince1970
+    
+        let messageDB = Database.database().reference().child("Emails")
+         
+         let messageDictionary = ["Sender": Auth.auth().currentUser?.email,
+                                  "EmailBody": emailBodyLabel.text!,
+                                  "To": "\(toLabel.text!)\(toTextField.text)",
+                                  "Subject": "\(subjectLabel.text!)\(subjectTextField.text)",
+                                  "cc": "\(ccLabel.text!)\(ccTextField.text)",
+            "Time": String(time)]
+         
+         messageDB.childByAutoId().setValue(messageDictionary) {
+             (error, reference) in
+             if error != nil {
+                 print(error)
+             } else {
+                 print("email saved successfully")
+                self.email?.emailID = reference.key!
+                self.dismiss(animated: true, completion: nil)
+             }
+         }
     }
 
      @IBAction func backButtonPressed(_ sender: Any) {

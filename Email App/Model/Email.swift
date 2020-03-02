@@ -16,4 +16,5 @@ class Email {
     var cc = ""
     var from = ""
     var time = ""
+    var emailID = ""
 }

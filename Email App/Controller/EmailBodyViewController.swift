@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class EmailBodyViewController: UIViewController {
     var email: Email?
@@ -20,17 +21,21 @@ class EmailBodyViewController: UIViewController {
     @IBOutlet weak var subjectLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailBody.text = email?.emailBody
-        fromLabel.text = "From: \(email?.from)"
-        ccLabel.text = "cc: \(email?.cc)"
-        subjectLabel.text = "Subject: \(email?.subject)"
+        guard let email = email else {return}
+        emailBody.text = email.emailBody
+        fromLabel.text = "From: \(email.from)"
+        ccLabel.text = "cc: \(email.cc)"
+        subjectLabel.text = "Subject: \(email.subject)"
     }
     
 
     @IBAction func deleteButtonPressed(_ sender: Any) {
+        guard let email = email else {return}
+    Database.database().reference().child("Emails").child("\(email.emailID)").removeValue()
     }
 
      @IBAction func archiveButtonPressed(_ sender: Any) {
+        
      }
 
 

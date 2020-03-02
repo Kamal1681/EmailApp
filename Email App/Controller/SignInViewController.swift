@@ -21,19 +21,46 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     var name: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        email = emailTextField.text
+        
         password = passwordTextField.text
-        name = nameTextField.text
+        nameTextField.delegate = self
+        passwordTextField.delegate = self
+        emailTextField.delegate = self
+        
         db = Firestore.firestore()
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField.tag {
+        case 1:
+            if let textFieldText = textField.text {
+                name = textFieldText
+            }
 
+            textField.resignFirstResponder()
+        case 2:
+            if let textFieldText = textField.text {
+                email = textFieldText
+            }
+            textField.resignFirstResponder()
+        case 3:
+            if let textFieldText = textField.text {
+                password = textFieldText
+            }
+            textField.resignFirstResponder()
+        default:
+            break
+        }
+        return true
+    }
+    
     @IBAction func resgisterButtonPressed(_ sender: Any) {
         guard let email = email,
             let password = password,
             let name = name else { return }
         
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            print(password)
             if error != nil {
                 print(error)
             } else {
@@ -55,6 +82,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        let container = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContainerController") as! ContainerController
+                   UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut, animations: {
+                           self.view.addSubview(container.view)
+                           self.addChild(container)
+                           container.didMove(toParent: self)
+                   }, completion: nil)
     }
     }
 

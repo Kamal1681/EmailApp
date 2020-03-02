@@ -21,7 +21,6 @@ class EmailViewController: UIViewController, UINavigationBarDelegate, UITableVie
     var email: Email?
     var emailArray: [Email] = [Email]()
     let reuseIdentifier = "EmailTableViewCell"
-    var db: Firestore!
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
@@ -29,12 +28,31 @@ class EmailViewController: UIViewController, UINavigationBarDelegate, UITableVie
         
         inboxTableView.delegate = self
         inboxTableView.dataSource = self
-        db = Firestore.firestore()
+       
         getEmails()
     }
     
     func getEmails() {
+        let messageDB = Database.database().reference().child("Emails")
+        messageDB.observe(.childAdded) { (snapshot) in
+            
+            let snapshotValue = snapshot.value as! Dictionary<String,String>
+            let emailBody = snapshotValue["EmailBody"]!
+            let sender = snapshotValue["Sender"]!
+            let subject = snapshotValue["Subject"]
+            let time = snapshotValue["Time"]
+            let emailID = snapshotValue["emailID"]
+            
+            let email = Email()
+            email.emailBody = emailBody
+            email.sender = sender
+            email.subject = subject!
+            email.time = time!
         
+            self.emailArray.append(email)
+            
+            self.inboxTableView.reloadData()
+        }
     }
     func configureNavigationBar() {
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -74,6 +92,9 @@ class EmailViewController: UIViewController, UINavigationBarDelegate, UITableVie
         cell.timeLabel.text = emailArray[indexPath.row].time
         
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         email = emailArray[indexPath.row]
