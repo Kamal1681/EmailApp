@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ContainerController: UIViewController, EmailViewControllerDelegate {
     
@@ -78,6 +79,13 @@ class ContainerController: UIViewController, EmailViewControllerDelegate {
         case .archive:
             let archiveViewController = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ArchiveViewController") as? ArchiveViewController)!
             present(archiveViewController, animated: true)
+        case .logout:
+            do {
+                 try Auth.auth().signOut()
+             }
+             catch {
+                 print("error")
+             }
 
         }
     }

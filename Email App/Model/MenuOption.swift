@@ -13,6 +13,7 @@ enum MenuOption: Int, CustomStringConvertible {
     case inbox
     case sent
     case archive
+    case logout
     
     var description: String {
         switch self {
@@ -20,6 +21,7 @@ enum MenuOption: Int, CustomStringConvertible {
         case .inbox: return "Inbox"
         case .sent: return "sent"
         case .archive: return "archive"
+        case .logout: return "logout"
 
         }
     }

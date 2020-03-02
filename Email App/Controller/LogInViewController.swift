@@ -23,7 +23,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
 
         passwordTextField.delegate = self
         emailTextField.delegate = self
-        db = Firestore.firestore()
+
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField.tag {
@@ -37,7 +37,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 password = textFieldText
             }
             textField.resignFirstResponder()
-            default:
+        default:
                break
             }
         return true

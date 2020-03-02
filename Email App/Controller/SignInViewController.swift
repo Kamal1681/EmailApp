@@ -26,8 +26,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         nameTextField.delegate = self
         passwordTextField.delegate = self
         emailTextField.delegate = self
-        
-        db = Firestore.firestore()
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

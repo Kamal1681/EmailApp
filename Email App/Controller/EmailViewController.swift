@@ -89,7 +89,7 @@ class EmailViewController: UIViewController, UINavigationBarDelegate, UITableVie
         let cell = inboxTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! EmailTableViewCell
         cell.fromLabel.text = emailArray[indexPath.row].sender
         cell.subjectLabel.text = emailArray[indexPath.row].subject
-        cell.timeLabel.text = emailArray[indexPath.row].time
+        //cell.timeLabel.text = emailArray[indexPath.row].time
         
         return cell
     }

@@ -28,8 +28,9 @@ class ComposeEmailViewController: UIViewController, UITextViewDelegate, UITextFi
     
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        guard let email = email else {return}
+        email.emailBody = textView.text
 
-        email?.emailBody = textView.text
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -43,18 +44,18 @@ class ComposeEmailViewController: UIViewController, UITextViewDelegate, UITextFi
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField.tag {
         case 1:
-            if let textFieldText = textField.text {
-                email?.to = textFieldText
+            if let textFieldText = textField.text, let email = email {
+                email.to = textFieldText
             }
             textField.resignFirstResponder()
         case 2:
-            if let textFieldText = textField.text {
-                email?.cc = textFieldText
+            if let textFieldText = textField.text, let email = email {
+                email.cc = textFieldText
             }
             textField.resignFirstResponder()
         case 3:
-            if let textFieldText = textField.text {
-                email?.subject = textFieldText
+            if let textFieldText = textField.text, let email = email {
+                email.subject = textFieldText
             }
             textField.resignFirstResponder()
         default:

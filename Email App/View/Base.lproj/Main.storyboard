@@ -57,12 +57,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXT-oH-7Jq">
-                                                    <rect key="frame" x="328" y="11" width="32" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-bP-mzy">
                                                     <rect key="frame" x="15" y="11" width="42.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -78,18 +72,15 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="cfe-bP-mzy" firstAttribute="top" secondItem="Yoe-fx-pS2" secondAttribute="topMargin" id="0qw-U0-Ohx"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="FXT-oH-7Jq" secondAttribute="trailing" id="3uR-tf-AbL"/>
                                                 <constraint firstItem="nWu-cI-udf" firstAttribute="leading" secondItem="cfe-bP-mzy" secondAttribute="leading" id="5Zl-3p-cdG"/>
                                                 <constraint firstItem="nWu-cI-udf" firstAttribute="top" secondItem="cfe-bP-mzy" secondAttribute="bottom" constant="8" id="IdJ-AF-3cf"/>
                                                 <constraint firstItem="cfe-bP-mzy" firstAttribute="leading" secondItem="Yoe-fx-pS2" secondAttribute="leadingMargin" id="LmS-i6-nF9"/>
-                                                <constraint firstItem="FXT-oH-7Jq" firstAttribute="top" secondItem="Yoe-fx-pS2" secondAttribute="topMargin" id="MsR-JB-6W6"/>
                                                 <constraint firstItem="nWu-cI-udf" firstAttribute="top" secondItem="cfe-bP-mzy" secondAttribute="bottom" constant="8" id="fK3-a6-XVM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="fromLabel" destination="cfe-bP-mzy" id="wIl-zF-aLT"/>
                                             <outlet property="subjectLabel" destination="nWu-cI-udf" id="Eu1-Tw-JAD"/>
-                                            <outlet property="timeLabel" destination="FXT-oH-7Jq" id="LDK-JM-UR5"/>
                                             <segue destination="AsC-qt-74l" kind="presentation" identifier="OpenEmailBody" id="YWj-vQ-Iie"/>
                                         </connections>
                                     </tableViewCell>

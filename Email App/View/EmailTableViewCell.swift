@@ -12,7 +12,7 @@ class EmailTableViewCell: UITableViewCell {
 
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var subjectLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

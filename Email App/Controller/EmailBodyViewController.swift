@@ -23,14 +23,15 @@ class EmailBodyViewController: UIViewController {
         super.viewDidLoad()
         guard let email = email else {return}
         emailBody.text = email.emailBody
-        fromLabel.text = "From: \(email.from)"
-        ccLabel.text = "cc: \(email.cc)"
-        subjectLabel.text = "Subject: \(email.subject)"
+        fromLabel.text = "\(email.from)"
+        ccLabel.text = "\(email.cc)"
+        subjectLabel.text = "\(email.subject)"
     }
     
 
     @IBAction func deleteButtonPressed(_ sender: Any) {
         guard let email = email else {return}
+        print(Database.database().reference().child("Emails"))
     Database.database().reference().child("Emails").child("\(email.emailID)").removeValue()
     }
 
